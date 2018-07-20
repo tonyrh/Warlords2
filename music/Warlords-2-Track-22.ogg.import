@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Warlords-2-Track-22.ogg-dffef7c2534101e00fd7ab8f87d226e3.oggstr"
+
+[deps]
+
+source_file="res://music/Warlords-2-Track-22.ogg"
+dest_files=[ "res://.import/Warlords-2-Track-22.ogg-dffef7c2534101e00fd7ab8f87d226e3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Warlords-2-Track-18.ogg-1e1bfc3dbab834beaf0efd1d1358e326.oggstr"
+
+[deps]
+
+source_file="res://music/Warlords-2-Track-18.ogg"
+dest_files=[ "res://.import/Warlords-2-Track-18.ogg-1e1bfc3dbab834beaf0efd1d1358e326.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
