@@ -13,6 +13,7 @@ onready var ratio = ( map_size / rect_size )
 # onready var origin = $minimap_reticule
 
 var zoom = 0
+var moving = false
 
 export(Color, RGBA) var color = Color(1,1,1,.8) # Color is RGB.
 export var width = 2.0
@@ -27,9 +28,13 @@ func _ready():
 #	pass
 
 func _input(event):
-	if event.is_action_pressed("left_mouse"):
-		if rect.has_point(get_local_mouse_position()):
-			get_tree().call_group("main_camera", "move_to", [get_local_mouse_position() * ratio])
+	if visible:
+		if event.is_action_pressed("left_mouse") || (event is InputEventMouseMotion && moving == true):
+			if rect.has_point(get_local_mouse_position()):
+				moving = true
+				get_tree().call_group("main_camera", "move_to", [get_local_mouse_position() * ratio])
+		elif event.is_action_released("left_mouse"):
+			moving = false
 	pass
 
 func _draw():

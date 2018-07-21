@@ -3,9 +3,10 @@ extends CanvasLayer
 enum STATES { HIDDEN, SHOWN }
 var _state = SHOWN
 
+onready var minimap = $minimap
+
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
+	minimap.show()
 	pass
 
 #func _process(delta):
