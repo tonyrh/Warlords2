@@ -12,7 +12,7 @@ export (float) var max_zoom = 0.5
 var camera_zoom = get_zoom()
 
 # It changes a camera zoom value in units... (?, but it works... it probably
-## multiplies camera size by 1+camera_zoom_speed)
+# multiplies camera size by 1+camera_zoom_speed)
 const camera_zoom_speed = Vector2(0.5, 0.5)
 
 # Vector of camera's movement / second.
@@ -29,11 +29,11 @@ var camera_limit_right = 0
 var camera_limit_top = 0
 var camera_limit_bottom = 0
 
-var zoom_limit = Vector2(1,1)
+var zoom_limit = Vector2(0.5,1.5)
 
 func _ready():
 	_set_camera_limits()
-	_set_zoom_limits()
+	#_set_zoom_limits()
 	
 	set_h_drag_enabled(false)
 	set_v_drag_enabled(false)
@@ -51,13 +51,14 @@ func _input(ev):
 	
 	# print("camera position: " + String(position))
 		
-	if ev.is_action_pressed("zoom_in") and zoom.x > zoom_limit.y:
-		zoom = Vector2(zoom.x - 0.25, zoom.y - 0.25)
+	if ev.is_action_pressed("zoom_in") and zoom.x > zoom_limit.x:
+		zoom = Vector2(zoom.x - 0.5, zoom.y - 0.5)
 		print("zoom in: " + String(zoom))
 		update()
 		return
-	elif ev.is_action_pressed("zoom_out") and zoom.x < zoom_limit.x:
-		zoom = Vector2(zoom.x + 0.25, zoom.y + 0.25)
+	elif ev.is_action_pressed("zoom_out") and zoom.x < zoom_limit.y:
+		print("zoom_limit: " + str(zoom_limit))
+		zoom = Vector2(zoom.x + 0.5, zoom.y + 0.5)
 		print("zoom out: " + String(zoom))
 		update()
 		return
@@ -90,13 +91,13 @@ func update():
 	_set_camera_limits()
 	
 	# Update camera zoom
-	_set_zoom_limits()
+	# _set_zoom_limits()
 	
 	# Fix zoom if too small (can happen after a window resize... I think):
-	if zoom.x > zoom_limit.x:
-		zoom = Vector2(zoom_limit.x, zoom_limit.x)
-	if zoom.x < zoom_limit.y:
-		zoom = Vector2(zoom_limit.y, zoom_limit.y)
+#	if zoom.x > zoom_limit.x:
+#		zoom = Vector2(zoom_limit.x, zoom_limit.x)
+#	if zoom.x < zoom_limit.y:
+#		zoom = Vector2(zoom_limit.y, zoom_limit.y)
 
 	# Fix camera position if out of bounds
 	if !_inside_camera_limits(position):

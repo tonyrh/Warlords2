@@ -11,13 +11,16 @@ onready var world = $vpc1/vp1/map
 onready var music = $music
 
 var fullscreen = false
-var mute = false
+export (bool) var mute = false
 
 func _ready():
+	if mute:
+		music.volume_db = -80
 	vp2.world_2d = vp1.world_2d
 	pass
 
 func _input(event):
+	
 	if event.is_action_pressed("fullscreen"):
 		fullscreen = !fullscreen
 		OS.set_window_fullscreen(fullscreen)

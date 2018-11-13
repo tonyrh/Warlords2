@@ -1,12 +1,10 @@
 extends CanvasLayer
 
-enum STATES { HIDDEN, SHOWN }
-var _state = SHOWN
 
-onready var minimap = $minimap
+#onready var menu_shown = $dim.visible
 
 func _ready():
-	minimap.show()
+#	minimap.show()
 	pass
 
 #func _process(delta):
@@ -14,25 +12,16 @@ func _ready():
 #	# Update game logic here.
 #	pass
 
-func _change_state(new_state):
-	if new_state == HIDDEN:
-		get_tree().call_group("minimap", "hide")
-		$"top/close_button".texture_normal = load("res://gui/assets/maximize.png")
-	if new_state == SHOWN:
-		get_tree().call_group("minimap", "show")
-		$"top/close_button".texture_normal = load("res://gui/assets/close.png")
-	_state = new_state
+func _input(event):
+	
+	if event.is_action_pressed("esc"):
+		if !$esc_menu.visible:
+			# show menu
+			$esc_menu.visible = true
+			pass
+		else:
+			# hide menu
+			$esc_menu.visible = false
+			pass
+		return
 
-func _on_close_button_pressed():
-	if _state == SHOWN:
-		_change_state(HIDDEN)
-	elif _state == HIDDEN:
-		_change_state(SHOWN)
-
-func _on_close_button_mouse_entered():
-	Input.set_custom_mouse_cursor(load("res://gui/assets/finger.png"))
-	pass
-
-func _on_close_button_mouse_exited():
-	Input.set_custom_mouse_cursor(load("res://gui/assets/cursor.png"))
-	pass

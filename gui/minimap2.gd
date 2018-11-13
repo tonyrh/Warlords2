@@ -15,15 +15,22 @@ func _ready():
 #	close_button.rect_position = Vector2(266,4)
 #	close_button.rect_scale = Vector2(1.25,1.25)
 #	print("close button position: " + String(close_button.rect_position))
+	show()
 	close_button.hide()
+	_go_to_position()
+	
+	get_tree().get_root().connect("size_changed", self, "myfunc")
+	
 #	set_process(true)
 	pass
 
 func _input(event):
-#func _process(delta):
-	# Called every frame. Delta is time since last frame.
-	# Update game logic here.
 	_hotspot()
+	pass
+
+func _go_to_position():
+	rect_position.x = get_viewport().size.x - rect_size.x + GAP.x
+	rect_position.y = GAP.y
 	pass
 
 func _hotspot():
@@ -54,3 +61,7 @@ func _hotspot():
 #		# print(title_height)
 #		pass
 	pass
+
+func myfunc():
+	print("Resizing: ", get_viewport_rect().size)
+	_go_to_position()

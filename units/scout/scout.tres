@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://units/scout/scout.shader" type="Shader" id=1]
+
+[resource]
+
+render_priority = 0
+shader = ExtResource( 1 )
+shader_param/u_color_key = Color( 0.286275, 0.764706, 1, 1 )
+shader_param/u_replacement_color = Color( 0, 0, 0, 1 )
+_sections_unfolded = [ "shader_param" ]
+
